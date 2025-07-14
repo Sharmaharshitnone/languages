@@ -1,2 +1,6 @@
 .venv
-
+# Ignore all files with no extension (likely executables)
+*.[!cCpPhH]*
+!*/   
+*.exe
+*.out
