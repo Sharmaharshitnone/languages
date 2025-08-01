@@ -9,7 +9,7 @@ using namespace std;
  * @time_complexity O(n) where n is the number of piles
  * @space_complexity O(1)
  */
-int maxPile(vector <int> arr){
+int maxPile(const vector <int>& arr){
     int maxSize = INT_MIN; // setting maxSize to lowest possible value
     for (int pile : arr) {
         maxSize = max(maxSize, pile); // trying to get the biggest size of the pile 
@@ -31,9 +31,9 @@ int maxPile(vector <int> arr){
  * @time_complexity O(n * log(max_pile)) where n is the number of piles
  * @space_complexity O(1)
  */
-int minSpeed(vector <int> arr, int h){
+int minSpeed(const vector <int>& arr, int h){
     int left = 1;
-    int right = maxPile(arr);
+    int right = maxPile(arr);1
     
     // If hours are less than number of piles, it's impossible
     if (h < arr.size()) {

@@ -1,3 +1,23 @@
+/*
+  Question: Sum of Subarray Ranges
+
+  Given an array of integers, find the sum of the ranges of all possible subarrays.
+  The range of a subarray is defined as the difference between the maximum and minimum element in that subarray.
+
+  Input:
+  - The first line contains an integer n, the size of the array.
+  - The second line contains n space-separated integers representing the array.
+
+  Output:
+  - An integer representing the sum of the ranges of all subarrays.
+
+  Example:
+  Input: 3
+         1 2 3
+  Output: 4
+  Explanation: The subarrays are [1], [2], [3], [1,2], [2,3], [1,2,3]. Their ranges are 0, 0, 0, 1, 1, 2. The sum is 0+0+0+1+1+2=4.
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 

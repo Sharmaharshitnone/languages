@@ -1,47 +1,33 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-vector<int> kthSmallestFraction(vector<int>&arr, int k){
-	int n = arr.size();
-
-	auto compare = [&arr](pair<int, int> &a, pair<int, int>&b){
-		return arr[a.first] * arr[b.second] > arr[b.first] * arr[a.second];
-	};
-
-	priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(compare) > pq(compare);
-
-	for(int j = 1; j < n; j++){
-		pq.push({0, j});
+int maxPile(const vector<int>&arr){
+	int maxSize = INT_MIN;
+	for(int pile : arr){
+		maxSize = max(maxSize, pile);
 	}
-
-	for(int i = 1; i < k; i++){
-		auto[num_idx, den_idx] = pq.top();
-
-		if(num_idx + 1 < den_idx){
-			pq.push({num_idx + 1, den_idx});
-		}
-	}
-
-	auto[num_idx, den_idx] = pq.top();
-	return {arr[num_idx], arr[den_idx]};
-
+	return maxSize;
 }
 
-int main()
-{
-    int n, k;
-    cin >> n;
+int minSpeed(const vector<int>&arr, int h){
+	int left = 1;
+	int right = maxPile(arr);
+	if(h < arr.size()){
+		return -1;
+	}
+	while(left < right){
+		int mid = left + (right - left) / 2;
+		long long totalHour = 0;
 
-    vector<int> arr(n);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    }
+		for(int pile: arr){
+			totalHour += (pile + mid - 1) /mid;
+		}
 
-    cin >> k;
-
-    vector<int> result = kthSmallestFraction(arr, k);
-    cout << result[0] << " " << result[1] << endl;
-
-    return 0;
+		if(totalHour <= h){
+			right = mid;
+		}else{
+			left = mid + 1;
+		}
+	}
+	return left;
 }
